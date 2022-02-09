@@ -79,6 +79,23 @@ class Web3Utils:
         }
         return self.sign_send(func, params, key, "授权代币到" + toAddress)
 
+    def has_approved(self, key, contract, approvedAddress):
+        '''查看代币授权
+        Args:
+            key (str): 钱包密钥
+            approvedAddress (str): 授权地址
+        Returns:
+            state(boolean): true授权 false未授权
+        '''
+        pass
+        account = self.get_account(key)
+        tokenSize = contract.functions.allowance(account.address, approvedAddress).call()
+        if tokenSize > 0:
+            return bool(1)
+        else:
+            return bool(0)
+
+
     def transfer_erc20(self, key, nonce, contract, toAddress, amount):
         '''发送erc20代币到某地址
         Args:
