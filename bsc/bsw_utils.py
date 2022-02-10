@@ -25,7 +25,7 @@ class Bsw:
     '''
     pass
 
-    web3Utils = Web3Utils("https://bsc-dataseed.binance.org/", 5)
+    web3Utils = Web3Utils("https://bsc-dataseed.binance.org/", 5, 56)
 
     bspAddress = "0xb00ed7e3671af2675c551a1c26ffdcc5b425359b"
 

@@ -10,17 +10,18 @@ class Web3Utils:
         w3:web3py模块对象
     '''
 
-    def __init__(self, rpc, gwei):
+    def __init__(self, rpc, gwei, chainId):
         '''构造函数,传入公链的rpc创建Web3Utils对象
         Args:
             rpc (str): 公链rpc地址 例: web3Utils = Web3Utils('https://bsc-dataseed.binance.org/')
-            gwei (int): gWei使用情况 (就是速度,bsc最低5gwei,oec最低0.1wei)
+            gwei (num): gWei使用情况 (就是速度,bsc最低5gwei,oec最低0.1wei)
         Returns:
             web3Utils(Web3Utils): Web3Utils对象
         '''
         pass
         self.w3 = Web3(Web3.HTTPProvider(rpc))
         self.gwei = self.w3.toWei(gwei, 'gwei')
+        self.chainId = chainId
 
     def get_balance(self, address):
         '''通过钱包地址获取主链代币余额 如: ETH BNB OKT AVAX HT等
@@ -182,7 +183,7 @@ class Web3Utils:
             to = self.w3.toChecksumAddress(toAddress),
             value = 0,
             data = self.w3.toHex(hexstr=data),
-            chainId = 56,
+            chainId = self.chainId,
         ),
             key,
         )
@@ -226,4 +227,23 @@ class Web3Utils:
             i = i + 1
         num64 = zeroStr + str(num16Str)
         return num64
+
+    def hex64_adreess(self, address):
+        '''把地址转换成64位前方用0填充
+        Args:
+            address (str): 钱包地址
+        Returns:
+            num64(str): 64位数字
+        '''
+        pass
+        address40 = str(address).replace('0x', '')
+        address40Length = len(address40)
+        zeroCount = 64 - address40Length
+        zeroStr = ''
+        i = 0
+        while i < zeroCount:
+            zeroStr = zeroStr + "0"
+            i = i + 1
+        address64 = zeroStr + address40
+        return address64
 
