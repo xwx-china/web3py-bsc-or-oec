@@ -8,7 +8,8 @@ BSC:
 3.skill加密刀片游戏自动化  
 
 OEC:  
-1.skill加密刀片游戏自动化 
+1.skill加密刀片游戏自动化  
+2.isl游戏自动化
 
 定制功能和推荐项目联系  
 电报: xuancuanxuan  
