@@ -1,5 +1,9 @@
 from web3 import Web3
 
+import time
+
+import json
+
 class Web3Utils:
     '''对业务封装web3工具类
 
@@ -198,11 +202,15 @@ class Web3Utils:
             receipt: 数据对象
         '''
         pass
-        try:
-            receipt = self.w3.eth.get_transaction_receipt(tx)
-            return receipt
-        except Exception as e:
-            self.get_receipt_tx(tx)
+        receipt = None
+        while receipt == None:
+            try:
+                # 延迟0.5秒后查询
+                time.sleep(0.5)
+                receipt = self.w3.eth.get_transaction_receipt(tx)
+            except Exception as e:
+                pass
+        return receipt
 
     def hex64(self, num):
         '''把数字或字符串转换成64位前方用0填充
@@ -246,4 +254,30 @@ class Web3Utils:
             i = i + 1
         address64 = zeroStr + address40
         return address64
+
+    def get_bytes4_abi(self, data):
+        data2 = json.loads(data)
+        for d in data2:
+            if 'name' in d:
+                text = None
+                txt = d['name']
+                inputs = d['inputs']
+                ip = None
+                if len(inputs) > 0:
+                    for i in inputs:
+                        if ip == None:
+                            ip = i['type']
+                        else:
+                            ip = ip + ',' + i['type']
+                    # print(ip)
+                    text = txt + '(' + ip + ')'
+                else:
+                    text = txt + '()'
+                print(text)
+                w3 = self.w3
+                a = w3.sha3(text=text)
+                h = w3.toHex(a)
+                t = str(h)
+                print(t[0:10])
+                ip = None
 
