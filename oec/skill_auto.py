@@ -9,18 +9,17 @@ account = skill.web3Utils.get_account(key)
 
 nonce = skill.web3Utils.get_nonce(account.address)
 
+cnt = '3'
 
-tx = skill.play_game(key, nonce, '30472', '79452', '0', '3')
+tx = skill.play_game(key, nonce, '30472', '79452', '1', cnt)
 nonce = nonce + 1
 
-tx = skill.play_game(key, nonce, '5467', '79452', '0', '3')
+tx = skill.play_game(key, nonce, '30477', '78471', '2', cnt)
 nonce = nonce + 1
 
-tx = skill.play_game(key, nonce, '5475', '79452', '0', '3')
+tx = skill.play_game(key, nonce, '5475', '79452', '0', cnt)
 nonce = nonce + 1
 
-tx = skill.play_game(key, nonce, '30477', '78471', '0', '3')
+tx = skill.play_game(key, nonce, '5467', '79452', '0', cnt)
 nonce = nonce + 1
-
-
 

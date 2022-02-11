@@ -70,12 +70,13 @@ class Bsw:
             players.append(player)
         return players
 
-    def playGame(self, key, nonce,gameIndex, playersId):
+    def playGame(self, key, nonce, gameIndex, playersId):
         '''进行游戏
         Args:
             key (str): 钱包密钥
+            nonce (int): 钱包交易数量
             gameIndex (int): 游戏编号 0-6对应1-7游戏
-            playersId[]: 玩家IDS
+            playersId ([]): 玩家IDS
         Returns:
             tx(str): 链上txhash
         '''
@@ -90,6 +91,26 @@ class Bsw:
             "nonce": nonce,
         }
         return self.web3Utils.sign_send(func, params, key, "进行游戏")
+
+    def harvest(self, key, nonce):
+        '''进行游戏
+        Args:
+            key (str): 钱包密钥
+            nonce (int): 钱包交易数量
+        Returns:
+            tx(str): 链上txhash
+        '''
+        pass
+        account = self.web3Utils.get_account(key)
+        func = self.gameContract.functions.withdrawReward()
+        params = {
+            "from": account.address,
+            "value": self.web3Utils.w3.toWei(0, 'ether'),
+            'gasPrice': self.web3Utils.gwei,
+            "gas": 220000,
+            "nonce": nonce,
+        }
+        return self.web3Utils.sign_send(func, params, key, "获取收益")
 
 class Player:
     '''鱿鱼游戏玩家NFT类
