@@ -41,6 +41,20 @@ class Web3Utils:
         value = self.w3.fromWei(wei,'ether')
         return value
 
+    def get_contract_balance(self, address, contract):
+        '''通过合约地址获取代币余额 如: WBNB USDT BUSD
+        Args:
+            address (str): 钱包地址 例: web3Utils.getBalance('0x1C697f76a917E8995b93B0cD5b7F7BfF35daB93B')
+            contract (Contract): 合约对象
+        Returns:
+            value(int): 主链代币余额
+        '''
+        pass
+        wei = contract.functions.balanceOf(address).call()
+        value = self.w3.fromWei(wei, 'ether')
+        return value
+
+
     def get_account(self, key):
         '''通过私钥获取用户使用web3获取用户
         Args:
@@ -215,7 +229,7 @@ class Web3Utils:
     def hex64(self, num):
         '''把数字或字符串转换成64位前方用0填充
         Args:
-            num (int): 数字 or num (str): 数字
+            num : 数字 or num (str): 数字
         Returns:
             num64(str): 64位数字
         '''
