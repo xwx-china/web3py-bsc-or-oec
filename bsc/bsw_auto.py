@@ -12,7 +12,7 @@ bsw = Bsw()
 key = AdminKey.KEY.value
 
 # 游戏钱包私钥
-gameKey = BswKey.KEY6.value
+gameKey = BswKey.KEY18.value
 
 # 主钱包
 account = bsw.web3Utils.get_account(key)
@@ -30,14 +30,16 @@ gameNonce = bsw.web3Utils.get_nonce(gameAccount.address)
 查看授权
 '''
 adminBol = bsw.isApprovedForAll(account.address)
-if adminBol:
+print(adminBol)
+if adminBol != bool(1):
     bsw.setApprovalForAll(key, nonce)
-    nonce = nonce + 1
+    nonce = nonce + 2
 
 gameBol = bsw.isApprovedForAll(gameAccount.address)
-if gameBol:
+print(gameBol)
+if gameBol != bool(1):
     bsw.setApprovalForAll(gameKey, gameNonce)
-    nonce = gameNonce + 1
+    gameNonce = gameNonce + 2
 
 '''
 第一组游戏
@@ -76,7 +78,7 @@ nonce = nonce + 1
 # 获取钱包nft
 players = bsw.array_user_players(gameAccount.address)
 # 判断nft数量
-while len(nftIdsAll) != len(players):
+while len(nftIds1) != len(players):
     players = bsw.array_user_players(gameAccount.address)
 # 开始游戏
 tx = bsw.playGame(gameKey, gameNonce, 6, nftIds1)
@@ -98,7 +100,7 @@ nonce = nonce + 1
 # 获取钱包nft
 players = bsw.array_user_players(gameAccount.address)
 # 判断nft数量
-while len(nftIdsAll) != len(players):
+while len(nftIds1) != len(players):
     players = bsw.array_user_players(gameAccount.address)
 # 开始游戏
 tx = bsw.playGame(gameKey, gameNonce, 6, nftIds1)
@@ -120,7 +122,7 @@ nonce = nonce + 1
 # 获取钱包nft
 players = bsw.array_user_players(gameAccount.address)
 # 判断nft数量
-while len(nftIdsAll) != len(players):
+while len(nftIds1) != len(players):
     players = bsw.array_user_players(gameAccount.address)
 # 开始游戏
 tx = bsw.playGame(gameKey, gameNonce, 6, nftIds1)
