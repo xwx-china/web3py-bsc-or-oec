@@ -54,11 +54,11 @@ class Isl:
         pass
 
         # 游戏方法名
-        playGameMethod = "0x8a47be05"
+        playGameMethod = "0x293e60a0"
         # 游戏所需gas上限
-        gas = 1500000
+        gas = 2000000
         # 拼接data参数
-        data = playGameMethod + "0000000000000000000000000000000000000000000000000000000000000000"
+        data = playGameMethod + "0000000000000000000000000000000000000000000000000000000000000000a4c9b5d989fa12d608052e66dc5a37a431d679e93d0ed25572f97f67460bb157"
         tx = self.web3Utils.mandatory_sign_send(key, nonce, gas, self.gameHarvestAddress, data)
         return tx
 
