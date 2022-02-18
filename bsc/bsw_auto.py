@@ -2,8 +2,6 @@ from bsc.bsw_utils import Bsw
 from bsc.bsc_key import AdminKey,BswKey
 from bsc.bsc_tokens import Token,Abi
 
-import time
-
 '''
 自动进行游戏脚本
 '''
@@ -12,7 +10,7 @@ bsw = Bsw()
 key = AdminKey.KEY.value
 
 # 游戏钱包私钥
-gameKey = BswKey.KEY18.value
+gameKey = BswKey.KEY19.value
 
 # 主钱包
 account = bsw.web3Utils.get_account(key)
@@ -45,118 +43,142 @@ if gameBol != bool(1):
 第一组游戏
 '''
 # 游戏数组
-nftIds1 = [87712,87853,188911,179331]
-nftIds2 = [87945,128641,159897,59132]
-nftIdsAll = nftIds1 + nftIds2
+nftIds = [87853, 61600, 62326, 49394, 147716]
 # 发送nft
-bsw.transferFromBsps(key, nonce, gameAccount.address, nftIdsAll)
+bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds)
 nonce = nonce + 1
 # 获取钱包nft
 players = bsw.array_user_players(gameAccount.address)
 # 判断nft数量
-while len(nftIdsAll) != len(players):
+while len(nftIds) != len(players):
     players = bsw.array_user_players(gameAccount.address)
 # 开始游戏
-bsw.playGame(gameKey, gameNonce, 6, nftIds1)
-gameNonce = gameNonce + 1
-tx = bsw.playGame(gameKey, gameNonce, 6, nftIds2)
+tx = bsw.playGame(gameKey, gameNonce, 6, nftIds)
 gameNonce = gameNonce + 1
 bsw.web3Utils.get_receipt_tx(tx)
-print(tx)
 # 转移nft
-bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIdsAll)
+bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds)
 gameNonce = gameNonce + 1
 
 '''
 第二组游戏
 '''
 # 游戏数组
-nftIds1 = [43679,49394,48283,49286,46945,188948]
+nftIds = [128641, 128521, 46945, 49286, 104131]
 # 发送nft
-bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds1)
+bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds)
 nonce = nonce + 1
 # 获取钱包nft
 players = bsw.array_user_players(gameAccount.address)
 # 判断nft数量
-while len(nftIds1) != len(players):
+while len(nftIds) != len(players):
     players = bsw.array_user_players(gameAccount.address)
 # 开始游戏
-tx = bsw.playGame(gameKey, gameNonce, 6, nftIds1)
+tx = bsw.playGame(gameKey, gameNonce, 6, nftIds)
 gameNonce = gameNonce + 1
 bsw.web3Utils.get_receipt_tx(tx)
-print(tx)
 # 转移nft
-bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds1)
+bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds)
 gameNonce = gameNonce + 1
 
 '''
 第三组游戏
 '''
 # 游戏数组
-nftIds1 = [62326,61708,62226,61454,104131,113288]
+nftIds = [87712, 188911, 113288, 159897, 189698]
 # 发送nft
-bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds1)
+bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds)
 nonce = nonce + 1
 # 获取钱包nft
 players = bsw.array_user_players(gameAccount.address)
 # 判断nft数量
-while len(nftIds1) != len(players):
+while len(nftIds) != len(players):
     players = bsw.array_user_players(gameAccount.address)
 # 开始游戏
-tx = bsw.playGame(gameKey, gameNonce, 6, nftIds1)
+tx = bsw.playGame(gameKey, gameNonce, 6, nftIds)
 gameNonce = gameNonce + 1
 bsw.web3Utils.get_receipt_tx(tx)
-print(tx)
 # 转移nft
-bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds1)
-gameNonce = gameNonce + 1
-
-'''
-第三组游戏
-'''
-# 游戏数组
-nftIds1 = [189698,48333,48783,61600,160405,147716,167516]
-# 发送nft
-bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds1)
-nonce = nonce + 1
-# 获取钱包nft
-players = bsw.array_user_players(gameAccount.address)
-# 判断nft数量
-while len(nftIds1) != len(players):
-    players = bsw.array_user_players(gameAccount.address)
-# 开始游戏
-tx = bsw.playGame(gameKey, gameNonce, 6, nftIds1)
-gameNonce = gameNonce + 1
-bsw.web3Utils.get_receipt_tx(tx)
-print(tx)
-# 转移nft
-bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds1)
+bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds)
 gameNonce = gameNonce + 1
 
 '''
 第四组游戏
 '''
 # 游戏数组
-nftIds1 = [128521,181637,62136,61070,45166]
-nftIds2 = [167919]
-nftIds3 = [182379]
-nftIdsAll = nftIds1 + nftIds2 + nftIds3
+nftIds = [45166, 87945, 48333, 179331, 181592]
 # 发送nft
-bsw.transferFromBsps(key, nonce, gameAccount.address, nftIdsAll)
+bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds)
 nonce = nonce + 1
 # 获取钱包nft
 players = bsw.array_user_players(gameAccount.address)
 # 判断nft数量
-while len(nftIdsAll) != len(players):
+while len(nftIds) != len(players):
     players = bsw.array_user_players(gameAccount.address)
 # 开始游戏
-tx = bsw.playGame(gameKey, gameNonce, 6, nftIds1)
+tx = bsw.playGame(gameKey, gameNonce, 6, nftIds)
 gameNonce = gameNonce + 1
 bsw.web3Utils.get_receipt_tx(tx)
-print(tx)
 # 转移nft
-# bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds1)
-# gameNonce = gameNonce + 1
+bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds)
+gameNonce = gameNonce + 1
+
+'''
+第五组游戏
+'''
+nftIds = [61454, 62136, 61708, 48283, 62226, 188948]
+# 发送nft
+bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds)
+nonce = nonce + 1
+# 获取钱包nft
+players = bsw.array_user_players(gameAccount.address)
+# 判断nft数量
+while len(nftIds) != len(players):
+    players = bsw.array_user_players(gameAccount.address)
+# 开始游戏
+tx = bsw.playGame(gameKey, gameNonce, 6, nftIds)
+gameNonce = gameNonce + 1
+bsw.web3Utils.get_receipt_tx(tx)
+# 转移nft
+bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds)
+gameNonce = gameNonce + 1
+
+'''
+第六组游戏
+'''
+nftIds = [167516, 43679, 181637, 59132, 61070, 181757, 160405]
+# 发送nft
+bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds)
+nonce = nonce + 1
+# 获取钱包nft
+players = bsw.array_user_players(gameAccount.address)
+# 判断nft数量
+while len(nftIds) != len(players):
+    players = bsw.array_user_players(gameAccount.address)
+# 开始游戏
+tx = bsw.playGame(gameKey, gameNonce, 6, nftIds)
+gameNonce = gameNonce + 1
+bsw.web3Utils.get_receipt_tx(tx)
+# 转移nft
+bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds)
+gameNonce = gameNonce + 1
+
+'''
+第七组游戏
+'''
+nftIds = [197786, 48783, 200137, 167919, 200877, 182379]
+# 发送nft
+bsw.transferFromBsps(key, nonce, gameAccount.address, nftIds)
+nonce = nonce + 1
+# 获取钱包nft
+players = bsw.array_user_players(gameAccount.address)
+# 判断nft数量
+while len(nftIds) != len(players):
+    players = bsw.array_user_players(gameAccount.address)
+# 开始游戏
+tx = bsw.playGame(gameKey, gameNonce, 2, [197786, 48783, 200137])
+gameNonce = gameNonce + 1
+bsw.web3Utils.get_receipt_tx(tx)
 
 '''
 获取收益 不挖提卖的注释掉这两行
@@ -167,14 +189,15 @@ gameNonce = gameNonce + 1
 '''
 最后一组游戏 养钱包
 '''
-bsw.playGame(gameKey, gameNonce, 0, nftIds2)
+bsw.playGame(gameKey, gameNonce, 0, 167919)
 gameNonce = gameNonce + 1
-tx = bsw.playGame(gameKey, gameNonce, 0, nftIds3)
+bsw.playGame(gameKey, gameNonce, 0, 200877)
+gameNonce = gameNonce + 1
+bsw.playGame(gameKey, gameNonce, 0, 182379)
 gameNonce = gameNonce + 1
 bsw.web3Utils.get_receipt_tx(tx)
-print(tx)
 # 转移nft
-bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIdsAll)
+bsw.transferFromBsps(gameKey, gameNonce, account.address, nftIds)
 gameNonce = gameNonce + 1
 
 '''
