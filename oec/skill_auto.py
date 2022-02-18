@@ -1,23 +1,14 @@
-from oec.skill_utils import Skill
-from oec.oec_key import AdminKey,SkillKey
+from skill_utils import Skill
+from oec_key import AdminKey,SkillKey
+from public.log_utils import Logger
 
 import threading
-import time
 
 import math
 
-import logging
-
 skill = Skill()
-# 日志
-logger = logging.getLogger()
-logfile = 'skill.log'
-hdlr = logging.FileHandler(logfile)
-formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
-hdlr.setFormatter(formatter)
-logger.addHandler(hdlr)
-logger.setLevel(logging.INFO)
 
+logger = Logger('skill.log').get_log()
 
 def get_cbcs(address):
     '''
@@ -100,7 +91,7 @@ def start():
     for tx in txs:
         logger.info('进攻tx:' + str(tx))
     logger.info('脚本结束')
-    threading.Timer(600, start).start()
+    threading.Timer(3600, start).start()
 
 
 timer = threading.Timer(1, start).start()
